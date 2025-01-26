@@ -1,0 +1,38 @@
+
+
+
+
+// Este es un comentario
+class Validator {
+  public:
+    bool validateExistingFile(string fileName) {
+        ifstream reading_file;
+        reading_file.open(fileName);
+        if(!reading_file.is_open()) return false;
+        reading_file.close();
+        return true;
+    }
+    bool validateNonEmptyLine(string fileName){
+        ifstream reading_file;
+        reading_file.open(fileName);
+        string str = "", content = "";
+        // bool character_founded = false;
+        while(getline(reading_file, str)){
+            content += str;
+            /* if(str.find_first_not_of(" \t") != string::npos){
+                 character_founded = true;
+             }*/
+        }
+        reading_file.close();
+        return ((content.length() == 0) ? false : true);
+    }
+};
+/*
+cout << endl;
+cout << endl;
+cout << endl;
+cout << endl;
+cout << endl;
+*/
+
+// Linea final
