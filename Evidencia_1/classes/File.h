@@ -48,7 +48,6 @@ class File {
                 this->totalComments = newData["totalComments"];
                 this->totalEmptyLines = newData["totalEmptyLines"];
                 this->totalCode = newData["totalCode"];
-                cout << this->totalComments << endl;
                 return true;
             }
             catch(const exception& e){

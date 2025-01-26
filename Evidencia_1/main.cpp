@@ -9,31 +9,25 @@ using namespace std;
 
 int main(){
     SetConsoleOutputCP(65001);
-    while(true){
-        string fileName = "", content = "", userInput = "";
-        FileManager fileManager;
-        Reader reader;
-        map<string, int> data; // "Diccionario" con los datos de interes
+    string fileName = "", content = "";
+    bool validFile = false;
+    FileManager fileManager;
+    Reader reader;
+    map<string, int> data; // "Diccionario" con los datos de interes
+    while(!validFile){
         while(fileName.length() == 0){ // Mientras el usuario no ingrese nada
             cout << "Ingresa el nombre del archivo: ";
             getline(cin, fileName);
         }
         if(!fileManager.setFile(fileName)){ // Si la carga del archivo no fue exitosa
+            fileName = "";
             continue;
         }
-        content = fileManager.getFile().getContent();
-        data = reader.analyzeContent(content);
-        fileManager.getFile().updateData(data);
-        fileManager.getFile().showData();
-        // Mientras la entrada del usuario sea una opción inválida
-        while(userInput != "S" && userInput != "s" && userInput != "N" && userInput != "n"){
-            cout << "Desea continuar? (S/N): ";
-            getline(cin, userInput);
-        }
-        // Si el usuario decide no continuar
-        if(userInput == "N" || userInput == "n"){
-            break;
-        }
+        validFile = true;
     }
+    content = fileManager.getFile().getContent();
+    data = reader.analyzeContent(content);
+    fileManager.getFile().updateData(data);
+    fileManager.getFile().showData();
     return 0;
 }
